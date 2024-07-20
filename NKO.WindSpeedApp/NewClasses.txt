@@ -1,0 +1,66 @@
+
+/*
+ * new class WindSensor(double l)
+ * {
+ *    SensorData Measure()
+ * }
+ * 
+ * new class SensorData
+ * {
+ *   DataTime time
+ *   double tN, tS, TE, TW   t1, t2, t3, t4
+ *   
+ *   double? Temperature
+ *   }
+ * 
+ * new class Wind
+ * {
+ *   ctor (speed, alpha)
+ *   
+ *   (U,V) GetUV()
+ *   Speed
+ *   Alpha
+ *   TetaNorth
+ *   
+ *   string override GetString()   // "Speed = 7.1 Direction = 65 deg"
+ * }
+ * 
+ * new class SensorData2WindConverter / Adapter / Calculator
+ * {
+ *   ctor(length)
+ *   public Wind Convert(SensorData sensor)
+ * }
+ *  
+ *  new class WindStat
+ *  {
+ *   Queue <Wind> _WindSample
+ *   ctor ( ? )
+ *    AddNewWind(Wind)
+ *    Kalman ?
+ *    Wind   Wind2Min  {get;}
+ *    Wind   Wind10Min  {get;}
+ *    
+ *    Wind   WindPeak2Min  {get;}
+ *    WInd   WIndPeak10Min  {get;}
+ *    
+ *    
+ *  }
+ * 
+ *   Timer timer = new Timer( 1 sec ...)
+ *   
+ *   OnTimer()
+ *   {
+ *      SensorData sensorData = windSensor.Measure()
+ *      Wind wind = sensorDataToWind.Convert(sensorData)
+ *      windStat.AddNew(Wind);
+ *      
+ *      COnsole.writeLine(WinStat.Wind2Min.Speed, WinStat.Wind2Min.TetaNorth )
+ *   }
+ *   
+ *   
+ *   RESTAPI
+ *   
+ *      Wind Wind2Min
+ *      Wind Wind10Min
+ *      string sensorStat
+*/
