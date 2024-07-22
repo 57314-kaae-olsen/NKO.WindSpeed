@@ -17,6 +17,17 @@ Console.WriteLine($" t1, t2, t1-t2 :   {t1}, {t2}, {t1 - t2}   \n t3, t4, t3-t4 
 
 double vs = soundTravel.SoundSpeed;
 
+double vsByTMean34 = l / ((t3 + t4) / 2);
+Console.WriteLine($"SoundSpeed 3->4 = {vs}   SoundSpeedByTMean = {vsByTMean34}   Pct = {(vsByTMean34 - vs) / vs * 100.0}");
+
+
+double vsByTMean12 = l / ((t1 + t2) / 2);
+Console.WriteLine($"SoundSpeed 1->2 = {vs}   SoundSpeedByTMean = {vsByTMean12}   Pct = {(vsByTMean12 - vs) / vs * 100.0}");
+
+
+double vsByTMean14 = l / ((t1 + t2 + t3 + t4) / 4);
+Console.WriteLine($"SoundSpeed 1->4= {vs}   SoundSpeedByTMean = {vsByTMean14}   Pct = {(vsByTMean14- vs)/vs*100.0}");
+
 
 // East west 
 double helpEW = vs * vs  - l * l / (t1 * t2);

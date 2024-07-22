@@ -1,16 +1,45 @@
 
 /*
- * new class WindSensor(double l)
+
+https://www.th-friedrichs.de/en/products/wind/ultrasonic-anemometer/2d-ultrasonic-anemometer/
+
+I am proud to present my new 2D Ultrasonic Anemometer. The new 2D Ultrasonic Anemometer is designed for simultaneous measurement of horizontal wind speed and wind direction parameters as well as the acoustic temperature, without use of any moving parts.
+
+R =specific gas constant = 287.058 J / (kg · K) for dry air
+
+
+https://www.engineeringtoolbox.com/specific-heat-ratio-d_602.html
+
+Specific Heat Ratio of Air at Standard Atmospheric Pressure in SI Units:
+kappa = 1.401
+
+
+Interface IWindSensor
+{
+	SensorData GetSensorData()
+}
+
+new class HCSR04
+{
+	double GetDistance   MeasureDistance
+}
+
+new class UltraSonicWindSensor : IWindSensor
+{
+}
+
+ * new class WindSensor(double l) : IWindSensor
  * {
- *    SensorData Measure()
+ *    UltrasonicSensorData Measure()
  * }
  * 
- * new class SensorData
+ * new class UltrasonicSensorData  Result
  * {
  *   DataTime time
  *   double tN, tS, TE, TW   t1, t2, t3, t4
  *   
- *   double? Temperature
+ *   double Temperature
+     double vs
  *   }
  * 
  * new class Wind
@@ -56,6 +85,16 @@
  *      
  *      COnsole.writeLine(WinStat.Wind2Min.Speed, WinStat.Wind2Min.TetaNorth )
  *   }
+
+ Alternativ:
+    new Class Anemometer
+	{
+		Anemometer(IWindSensor windSensor)
+		GetCurrentSpeed()
+		GetCurrentDirection
+
+	
+	}
  *   
  *   
  *   RESTAPI
@@ -64,3 +103,14 @@
  *      Wind Wind10Min
  *      string sensorStat
 */
+
+
+//  Klasser  -----------------------------------
+
+UltraSoundAnemometer
+
+UltraSoundWindSensor
+
+UltraSoundSensorDataConverter / Adapter / Calculator
+
+HCSR04
