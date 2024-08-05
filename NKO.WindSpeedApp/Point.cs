@@ -55,4 +55,36 @@ namespace NKO.WindSpeedApp
 
 
     }
+
+    public interface ISensor
+    {
+        public double GetDelay();
+        public double DistanceDelay { get; set; }
+
+    }
+
+    public class Sensor : ISensor 
+    {
+        public Sensor() //double distance)
+        {
+        }
+
+        public double DistanceDelay { get; set; }
+
+        public double GetDelay() { return DistanceDelay * DistanceDelay; }
+    }
+
+    public class UltraSoundAnemometer<T> where T : new()
+    {
+        private ISensor _sensor;
+        public UltraSoundAnemometer()
+        {
+            _sensor = (ISensor) new T();
+            _sensor.DistanceDelay = 999;
+        }
+        public double GetWindSpeed()
+        {
+            return _sensor.GetDelay();
+         }
+    }
 }

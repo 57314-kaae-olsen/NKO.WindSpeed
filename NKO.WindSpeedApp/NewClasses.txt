@@ -14,10 +14,10 @@ Specific Heat Ratio of Air at Standard Atmospheric Pressure in SI Units:
 kappa = 1.401
 
 
-Interface IWindSensor
-{
-	SensorData GetSensorData()
-}
+		Interface IWindSensor
+		{
+			SensorData GetSensorData()
+		}
 
 new class HCSR04
 {
@@ -28,32 +28,32 @@ new class UltraSonicWindSensor : IWindSensor
 {
 }
 
- * new class WindSensor(double l) : IWindSensor
- * {
- *    UltrasonicSensorData Measure()
- * }
- * 
- * new class UltrasonicSensorData  Result
- * {
- *   DataTime time
- *   double tN, tS, TE, TW   t1, t2, t3, t4
- *   
- *   double Temperature
-     double vs
- *   }
- * 
- * new class Wind
- * {
- *   ctor (speed, alpha)
- *   
- *   (U,V) GetUV()
- *   Speed
- *   Alpha
- *   TetaNorth
- *   
- *   string override GetString()   // "Speed = 7.1 Direction = 65 deg"
- * }
- * 
+		 * new class WindSensor(double l) : IWindSensor
+		 * {
+		 *    UltrasonicSensorData Measure()
+		 * }
+		 * 
+		 * new class UltrasonicSensorData  Result
+		 * {
+		 *   DataTime time
+		 *   double tN, tS, TE, TW   t1, t2, t3, t4
+		 *   
+		 *   double Temperature
+			 double vs
+		 *   }
+		 * 
+		 * new class Wind
+		 * {
+		 *   ctor (speed, alpha)
+		 *   
+		 *   (U,V) GetUV()
+		 *   Speed
+		 *   Alpha
+		 *   TetaNorth
+		 *   
+		 *   string override GetString()   // "Speed = 7.1 Direction = 65 deg"
+		 * }
+		 * 
  * new class SensorData2WindConverter / Adapter / Calculator
  * {
  *   ctor(length)
@@ -114,3 +114,190 @@ UltraSoundWindSensor
 UltraSoundSensorDataConverter / Adapter / Calculator
 
 HCSR04
+
+
+
+
+
+ THE FINAL !!!
+
+
+ Solution NKO.WindSpeed
+
+ Projects:
+
+ Windows & Linux:
+
+	FrontEnd....
+
+	NKO.WindSpeed.ConsoleApp
+	NKO.WindSpeed.WebService
+
+	NKO.WindSpeed.UltraSoundAnemometer
+
+	NKO.WindSpeed.WindSensorDevice.UnitTest
+
+	NKO.WindSpeed.Graphics
+
+
+Windows:
+
+	NKO.WindSpeed.WebClient
+
+	NKO.WindSpeed.UIApp
+
+
+UNIT TESTS ------------------------------------
+ TestDelaysToWind
+ {
+   ISoundDelaySensor FakeN = SoundDelayFake (...)
+   ISoundDelaySensor FakeS =  
+   ISoundDelaySensor FakeE =
+   ISoundDelaySensor FakeW =
+
+   for (speed = 1,2,3,4)
+   {
+      for (alpha = 0, 45, 90, ... 360)
+	  {
+		   Wind windF = new Wind(speed, alpha)
+
+		   FakeN.SetWind(windF); FakeS.SetWind(windF); ,,,,,
+
+		   WindSensorDevice _WindSensorDevice = new WindSensorDevice(FakeN, FakeS, FakeE, Fakew)
+
+		   Wind wind = _WindSensorDevice.GetInstantaneousWind();
+
+		   Test.IsTrue(Wind.AreEqual(windF, wind));
+		}
+	}
+ }
+
+ TestWindStat
+ {
+   ISoundDelaySensor FakeN = SoundDelayFake (...)
+   ISoundDelaySensor FakeS =  
+   ISoundDelaySensor FakeE =
+   ISoundDelaySensor FakeW =
+
+   for (speed = 1,2,3,4)
+   {
+		   Wind windF = new Wind(speed, alpha)
+		   FakeN.SetWind(windF); FakeS.SetWind(windF); ,,,,,
+		   WindSensorDevice _WindSensorDevice = new WindSensorDevice(FakeN, FakeS, FakeE, Fakew)
+		   Wind wind = _WindSensorDevice.GetInstantaneousWind();
+		   WindStatData.NewWind(wind)
+   }
+   WindStat winstat = WindStatCalculator.GetWindStat(WindStatData)
+   Test.AreEqual(22, winstat.Min2min);
+   Wind.AreEqual(windF, wind));
+ }
+
+Klasser 31 juli -------------------------------------------
+
+UltraSoundAnemometer meter = new UltraSoundAnemometer<HCSR04>
+
+UltraSoundAnemometer<T>
+{
+   double distanceDelay = 0.2;
+   WindStatData _WindStatData;
+
+   ISoundDelaySensor HCSR04N = new <T>(distanceDelay, alpha=90)
+   ISoundDelaySensor HCSR04S = new HCSR04(distanceDelay, alpha=270)
+   ISoundDelaySensor HCSR04E = new HCSR04(distanceDelay, alpha=180)
+   ISoundDelaySensor HCSR04W = new HCSR04(distanceDelay, alpha=0)
+
+   WindSensorDevice _WindSensorDevice = new WindSensorDevice(HCSR04N, HCSR04S, HCSR04E, HCSR04W)
+
+   WindStat GetWindStat()
+   {
+	   return WindStatCalculator.GetWindStat(_windStatData)
+   }
+
+   OnTimer()
+   {
+      Wind = _WindSensorDevice.GetInstantaneousWind()
+      _WindStatData.NewWind(Wind)
+   }
+}
+
+WindSensorDevice  // WindUltraSoundDevice
+{
+    WindSensorDevice(double distanceDelay,  ISoundDelaySensor sensor1, ISoundDelaySensor sensor2, ISoundDelaySensor sensor3, ISoundDelaySensor sensor4 )
+
+	Wind GetInstantaneousWind()
+	{
+	   RawSensorData raw = new RawSensorData( sensor1.GetDelay(), sensor2.GetDelay(), sensor3.GetDelay(), sensor4.GetDelay(), DateTime.Now);
+
+       return SensorDataConverter.ConvertRaw2Wind(_distanceDelay, raw)    //  UltraSoundSensorDataConverter
+	}
+}
+
+RawSensorData   // RawUltraSoundSensorData
+{
+   DataTime time
+   double tN, tS, tE, tW
+}
+
+SensorDataConverter
+{
+     public static Wind ConvertRaw2Wind(double distanceDelay, RawSensorData raw)
+}
+
+HCSR04 :  ISoundDelaySensor
+{
+    GetDelay()
+}
+
+SoundDelayFake  :  ISoundDelaySensor
+{
+	GetDelay();
+
+	SetWind(Wind wind)
+}
+
+Interface ISoundDelaySensor
+{
+	GetDelay()
+}
+
+class Wind
+{
+   ctor (speed, alpha)
+   
+   (U,V) GetUV()
+   Speed
+   Alpha
+   CompassDirection 
+   
+   string override GetString()   // "Speed = 7.1 m/s Compass direction = 65 deg"
+
+   static bool AreEqual(Wind wind1, Wind wind2, double tolS = 1.0e-8, double tolA = 1.0e-8)
+}
+
+WindStatData  // WindTimeSeries
+{
+   NewWind(wind wind)
+   Queue <Wind> _WindSamples
+
+   Wind[] GetLast2MinTimeSeries();
+   Wind[] GetLast10MinTimeSeries()
+}
+
+WindStatCalculator
+{
+   static WindStat GetWindStat(WindStatData)
+}
+
+
+WindStat
+{
+     Kalman ?
+     Wind   Wind2Min  {get;}
+     Wind   Wind10Min  {get;}
+     
+     Wind   WindPeak2Min  {get;}
+     Wind   WIndPeak10Min  {get;}
+
+	 Wind[]  TimeSeries10Min {get;}
+	 Wind[]  TimeSeries2Min {get;}
+}

@@ -6,25 +6,27 @@ using System.Threading.Tasks;
 
 namespace NKO.WindSpeedApp
 {
-    public class SoundTravel
+    public class SoundDelayCalculator
     {
         private Point _A;
         private Point _B;
         private Point _C;
         private Point _D;
 
-        public double SoundSpeed = 300;
-        public SoundTravel(double distance)
+        public double SoundSpeed { get; }
+        public SoundDelayCalculator(double distance, double soundSpeed)
         {
             _A = new Point(0, 0);
             _B = new Point(0, distance);
 
             _C = new Point(-distance / 2, 0);
             _D = new Point(+distance / 2, 0);
+
+            SoundSpeed = soundSpeed;
         }
 
 
-        public (double t1, double t2, double t3, double t4) TravelTime(double windSpeed, double alphaDeg)
+        public (double t1, double t2, double t3, double t4) Delay(double windSpeed, double alphaDeg)
         {
             double alphaRad = alphaDeg / 180.0 * Math.PI;
             Vector wind = new Vector(windSpeed * Math.Cos(alphaRad), windSpeed * Math.Sin(alphaRad));

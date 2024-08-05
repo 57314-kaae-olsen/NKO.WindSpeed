@@ -6,16 +6,20 @@ using Vector = NKO.WindSpeedApp.Vector;
 Console.WriteLine("Hello, World!");
 
 
+var ultraSound = new UltraSoundAnemometer<Sensor>();
+double xx = ultraSound.GetWindSpeed();
+
 double windSpeed = 5;
 double alphaDeg = 60;
 double alphaRad = alphaDeg / 180.0 * Math.PI;
 
 double l = 0.2;
-SoundTravel soundTravel = new SoundTravel(l);
-(double t1, double t2, double t3, double t4) = soundTravel.TravelTime(windSpeed, alphaDeg);
+double soundSpeed = 300;
+SoundDelayCalculator soundDelayCalc = new SoundDelayCalculator(l, soundSpeed);
+(double t1, double t2, double t3, double t4) = soundDelayCalc.Delay(windSpeed, alphaDeg);
 Console.WriteLine($" t1, t2, t1-t2 :   {t1}, {t2}, {t1 - t2}   \n t3, t4, t3-t4    {t3}, {t4}, {t3 - t4}");
 
-double vs = soundTravel.SoundSpeed;
+double vs = soundSpeed;
 
 double vsByTMean34 = l / ((t3 + t4) / 2);
 Console.WriteLine($"SoundSpeed 3->4 = {vs}   SoundSpeedByTMean = {vsByTMean34}   Pct = {(vsByTMean34 - vs) / vs * 100.0}");
@@ -25,8 +29,8 @@ double vsByTMean12 = l / ((t1 + t2) / 2);
 Console.WriteLine($"SoundSpeed 1->2 = {vs}   SoundSpeedByTMean = {vsByTMean12}   Pct = {(vsByTMean12 - vs) / vs * 100.0}");
 
 
-double vsByTMean14 = l / ((t1 + t2 + t3 + t4) / 4);
-Console.WriteLine($"SoundSpeed 1->4= {vs}   SoundSpeedByTMean = {vsByTMean14}   Pct = {(vsByTMean14- vs)/vs*100.0}");
+double vsByTMean1234 = l / ((t1 + t2 + t3 + t4) / 4);
+Console.WriteLine($"SoundSpeed 1->4= {vs}   SoundSpeedByTMean = {vsByTMean1234}   Pct = {(vsByTMean1234- vs)/vs*100.0}");
 
 
 // East west 
@@ -43,20 +47,6 @@ double vwNS = Math.Sqrt(helpNS);
 double sinAlfaNS = (vs * vs * t4 * t4 - vwNS * vwNS * t4 * t4 - l * l) / (2 * t4 * l * vwNS);
 double alfaNS = Math.Asin(sinAlfaNS) * 180.0 / Math.PI;
 Console.WriteLine($"NORTH SOUTH vw = {vwNS} alfa = {alfaNS}");
-
-
-
-//var cosTeta = 0.5 * (vs * vs - vw * vw) / vw * (t1 - t2) / l;
-//var teta = Math.Acos(cosTeta) * 180.0 / Math.PI;
-//Console.WriteLine($"vw = {vw} {teta}");
-
-//double dx1 = Math.Cos(alphaRad) * vw * t1;
-//double dy1 = Math.Sin(alphaRad) * vw * t1 - l;
-//double eq1l = Math.Sqrt(dx1 * dx1 + dy1 * dy1);
-//double eq1r = vs * t1;
-
-//Console.WriteLine($"eq1l == eq2r ?? {eq1l} {eq1r} ");
-
 
 var A = new Point(0, 0);
 var B = new Point(0, l);
