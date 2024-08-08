@@ -24,9 +24,9 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
 
             double cosAlphaEW = (soundSpeed * soundSpeed * raw.DelayW * raw.DelayW - windSpeedEW * windSpeedEW * raw.DelayW * raw.DelayW - dist2)
                 / (2 * raw.DelayW * raw.SoundDistance * windSpeedEW);
-            double alphaRadEW = Math.Asin(cosAlphaEW);
+            double alphaRadEW = Math.Acos(cosAlphaEW);
 
-            if (Math.Abs(alphaRadNS) < Math.Abs(alphaRadEW))  //TODO: IMPORTANT
+            if (Math.Abs(alphaRadNS) < Math.Abs(alphaRadEW))  //TODO: IMPORTANT   sludder
             {
                 return new Wind(raw.DateTime, windSpeedNS, alphaRadNS / Math.PI * 180.0);
             }

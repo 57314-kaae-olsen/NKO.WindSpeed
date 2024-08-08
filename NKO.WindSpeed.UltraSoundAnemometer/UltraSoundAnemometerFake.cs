@@ -22,5 +22,11 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
         {
             return _anemometerCore.GetInstantaneousWind ();
         }
+
+        public WindStat GetWindStatistics()
+        {
+            return _anemometerCore.GetWindStatistics();
+        }
+
     }
 }

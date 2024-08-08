@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKO.WindSpeed.SoundDelayFak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKO.WindSpeed.UnitTests", "NKO.WindSpeed.UnitTests\NKO.WindSpeed.UnitTests.csproj", "{999DCC21-54D4-4FB1-B789-3B56DACBF01A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKO.WindSpeed.UltraSoundAnemometer", "NKO.WindSpeed.UltraSoundAnemometer\NKO.WindSpeed.UltraSoundAnemometer.csproj", "{235A8382-596D-49DE-B82C-D217FD0ACCEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKO.WindSpeed.UltraSoundAnemometer", "NKO.WindSpeed.UltraSoundAnemometer\NKO.WindSpeed.UltraSoundAnemometer.csproj", "{235A8382-596D-49DE-B82C-D217FD0ACCEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKO.WindSpeed.SoundDelayHCSR04Sensor", "NKO.WindSpeed.SoundDelayHCSR04Sensor\NKO.WindSpeed.SoundDelayHCSR04Sensor.csproj", "{20724EAD-095D-4657-B25F-E1E551683E87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{235A8382-596D-49DE-B82C-D217FD0ACCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235A8382-596D-49DE-B82C-D217FD0ACCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235A8382-596D-49DE-B82C-D217FD0ACCEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20724EAD-095D-4657-B25F-E1E551683E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20724EAD-095D-4657-B25F-E1E551683E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20724EAD-095D-4657-B25F-E1E551683E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20724EAD-095D-4657-B25F-E1E551683E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
