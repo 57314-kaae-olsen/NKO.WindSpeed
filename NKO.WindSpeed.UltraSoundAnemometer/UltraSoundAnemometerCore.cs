@@ -14,8 +14,7 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
         {
             _windSensorDevice = new WindSensorDevice<T>();
             _timer = new Timer(OnTimer, null, Timeout.Infinite, Timeout.Infinite);
-            _timer.Change(0, 10);
-
+            _timer.Change(0, 100);   //TODO: 100 milli seconds => 10 Hz
         }
 
         public void SetSoundDistance(double soundDistance)
@@ -37,6 +36,11 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
         {
             Wind newWind = GetInstantaneousWind();
             _winTimeSeries.AddNnewWind(newWind);
+        }
+
+        public (ISoundDelaySensor sensorN, ISoundDelaySensor sensorS, ISoundDelaySensor sensorE, ISoundDelaySensor sensorW) GetSensors()
+        {
+            return _windSensorDevice.GetSensors();
         }
 
     }

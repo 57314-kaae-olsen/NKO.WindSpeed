@@ -3,6 +3,8 @@ using NKO.WindSpeed.SoundDelayFakeSensor.Math;
 
 namespace NKO.WindSpeed.SoundDelayFakeSensor
 {
+    public enum SensorDirection { NORTH, SOUTH, EAST, WEST };
+
     public class SoundDelayFakeSensor : Interfaces.ISoundDelaySensor
     {
         private double _distanceDelay;
@@ -21,25 +23,25 @@ namespace NKO.WindSpeed.SoundDelayFakeSensor
             _distanceDelay = distanceDelay;
         }
 
-        public void SetSoundDirection(Interfaces.SensorDirection direction) 
+        public void SetSoundDirection(SensorDirection direction) 
         { 
             if (_distanceDelay == 0) { throw new Exception("distanceDelay is null"); }
 
             switch (direction)
             {
-                case Interfaces.SensorDirection.NORTH:
+                case SensorDirection.NORTH:
                     _fromPoint = new Point(0, -_distanceDelay / 2.0);
                     _toPoint = new Point(0, _distanceDelay / 2.0);
                     break;
-                case Interfaces.SensorDirection.SOUTH:
+                case SensorDirection.SOUTH:
                     _fromPoint = new Point(0, _distanceDelay / 2.0);
                     _toPoint = new Math.Point(0, -_distanceDelay / 2.0);
                     break;
-                case Interfaces.SensorDirection.EAST:
+                case SensorDirection.EAST:
                     _fromPoint = new Point(-_distanceDelay / 2.0, 0);
                     _toPoint = new Point(_distanceDelay / 2.0, 0);
                     break;
-                case Interfaces.SensorDirection.WEST:
+                case SensorDirection.WEST:
                     _fromPoint = new Point(_distanceDelay / 2.0, 0);
                     _toPoint = new Math.Point(-_distanceDelay / 2.0, 0);
                     break;
@@ -96,17 +98,4 @@ namespace NKO.WindSpeed.SoundDelayFakeSensor
         }
 
     }
-
-    public static class FakeWind
-    {
-        public static double FakeWindSpeed { get; set; }
-        public static double FakeWindOrientationDegr { get; set; }
-
-        public static void SetWind( double speed, double orientationDegr)
-        { 
-            FakeWindSpeed = speed;
-            FakeWindOrientationDegr = orientationDegr;
-        }
-    }
-
 }

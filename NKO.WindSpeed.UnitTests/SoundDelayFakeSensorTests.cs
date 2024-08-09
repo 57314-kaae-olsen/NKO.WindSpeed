@@ -15,8 +15,8 @@ namespace NKO.WindSpeed.UnitTests
             ISoundDelaySensor fakeSensor = new SoundDelayFakeSensor.SoundDelayFakeSensor();
 
             double distanceSound = 0.2;
-            fakeSensor.SetDistance(distanceSound);
-            fakeSensor.SetSoundDirection(NKO.WindSpeed.Interfaces.SensorDirection.NORTH);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)fakeSensor).SetDistance(distanceSound);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)fakeSensor).SetSoundDirection(SoundDelayFakeSensor.SensorDirection.NORTH);
 
             double delay = fakeSensor.GetDelay();
 

@@ -1,4 +1,5 @@
-﻿using NKO.WindSpeed.SoundDelayFakeSensor;
+﻿using NKO.WindSpeed.Interfaces;
+using NKO.WindSpeed.SoundDelayFakeSensor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,21 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
 
         public UltraSoundAnemometerFake()
         {
-            double soundDistance = 0.2;  //TODO: OK ?
             _anemometerCore = new UltraSoundAnemometerCore<SoundDelayFakeSensor.SoundDelayFakeSensor> ();
+
+            double soundDistance = 0.2;
             _anemometerCore.SetSoundDistance(soundDistance);
+
+            (ISoundDelaySensor sensorN, ISoundDelaySensor sensorS, ISoundDelaySensor sensorE, ISoundDelaySensor sensorW) = _anemometerCore.GetSensors();
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorN).SetDistance(soundDistance);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorS).SetDistance(soundDistance);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorE).SetDistance(soundDistance);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorW).SetDistance(soundDistance);
+
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorN).SetSoundDirection(SensorDirection.NORTH);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorS).SetSoundDirection(SensorDirection.SOUTH);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorE).SetSoundDirection(SensorDirection.EAST);
+            ((SoundDelayFakeSensor.SoundDelayFakeSensor)sensorW).SetSoundDirection(SensorDirection.WEST);
         }
 
         public Wind GetInstantaneousWind()

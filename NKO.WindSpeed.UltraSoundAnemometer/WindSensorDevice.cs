@@ -14,7 +14,6 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
         private ISoundDelaySensor _sensorE;
         private ISoundDelaySensor _sensorW;
 
-
         private double _soundDistance;
         public WindSensorDevice()
         {
@@ -28,15 +27,15 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
         {
             _soundDistance = soundDistance;
 
-            _sensorN.SetDistance(_soundDistance);
-            _sensorS.SetDistance(_soundDistance);
-            _sensorE.SetDistance(_soundDistance);
-            _sensorW.SetDistance(_soundDistance);
+            //_sensorN.SetDistance(_soundDistance);
+            //_sensorS.SetDistance(_soundDistance);
+            //_sensorE.SetDistance(_soundDistance);
+            //_sensorW.SetDistance(_soundDistance);
 
-            _sensorN.SetSoundDirection(SensorDirection.NORTH);
-            _sensorS.SetSoundDirection(SensorDirection.SOUTH);
-            _sensorE.SetSoundDirection(SensorDirection.EAST);
-            _sensorW.SetSoundDirection(SensorDirection.WEST);
+            //_sensorN.SetSoundDirection(SensorDirection.NORTH);
+            //_sensorS.SetSoundDirection(SensorDirection.SOUTH);
+            //_sensorE.SetSoundDirection(SensorDirection.EAST);
+            //_sensorW.SetSoundDirection(SensorDirection.WEST);
         }
 
         public Wind GetInstantaneousWind()
@@ -44,6 +43,11 @@ namespace NKO.WindSpeed.UltraSoundAnemometer
             RawSensorData rawData = new RawSensorData(DateTime.Now, _soundDistance, _sensorN.GetDelay(), _sensorS.GetDelay(), _sensorE.GetDelay(), _sensorW.GetDelay());
 
             return RawSensorDataConverter.ConvertToWind(rawData);
+        }
+
+        public (ISoundDelaySensor sensorN, ISoundDelaySensor sensorS, ISoundDelaySensor sensorE, ISoundDelaySensor sensorW) GetSensors()
+        {
+            return (_sensorN, _sensorS, _sensorE, _sensorW);
         }
 
     }

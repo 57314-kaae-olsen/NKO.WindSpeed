@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NKO.WindSpeed.Interfaces\NKO.WindSpeed.Interfaces.csproj" />
     <ProjectReference Include="..\NKO.WindSpeed.SoundDelayFakeSensor\NKO.WindSpeed.SoundDelayFakeSensor.csproj" />
+    <ProjectReference Include="..\NKO.WindSpeed.SoundDelayHCSR04Sensor\NKO.WindSpeed.SoundDelayHCSR04Sensor.csproj" />
   </ItemGroup>
 
 </Project>
