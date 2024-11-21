@@ -30,7 +30,7 @@ namespace NKO.WindSpeed.SoundDelayHCSR04Sensor
         public double GetDelay()
         {
             ManualResetEvent mre = new ManualResetEvent(false);
-            mre.WaitOne(500);
+            mre.WaitOne(500);  //TODO: 500 ?
             _timeWatcher.Reset();
             //Send pulse
             this._triggerPin.Write(PinValue.High);

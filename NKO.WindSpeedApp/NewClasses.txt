@@ -35,3 +35,50 @@ Windows:
 	NKO.WindSpeed.UIApp
 
 
+Raspberry Pi:
+	LCD display
+
+	CompassDirectionString
+	FriendlyCompassDirectionString
+	Wind --> ToFriendlyString -->  30 m/s Northwest
+				   		           30 m/s West
+
+Rename WindSensorDevice --> Windmeter  or UltraSoundWindmeter
+Rename soundDistance --> sensorDistance or
+Rename echoPin  --> signalPin or soundSignalPin
+
+NEXT STEPS:
+
+NKO.WindSpeed.Data:
+	Wind     (Add Temperature as property) ConvertToWind
+	RawSensorData --> DelaySensorData
+	WindStat
+	WindTimeSeries
+
+Configure new Raspberry Pi.
+
+Hardware HCSR04 mechanical setup
+
+Simple new console App:  
+    Name: Distancemeter   Foldername TestApp
+	Test the class SoundDelayHCSR04Sensor
+	Measure Distance --> Write distance at console
+	Write distance at LCD display
+
+	//1D Wind sensor app
+	Write distance at LCD display
+
+NKO.WindSpeed.LCD.App
+	2D Wind sensor app
+	UltraSoundAnemometerHCSR04
+	Write distance at LCD display
+
+
+NKO.WindSpeed.WebService
+	UltraSoundAnemometerHCSR04
+	Rest API	
+
+	NKO.WindSpeed.WebClient:  Windows
+
+	NKO.WindSpeed.UIApp: Windows
+		Wind rose style
