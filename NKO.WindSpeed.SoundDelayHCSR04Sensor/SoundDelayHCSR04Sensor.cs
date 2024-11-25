@@ -53,9 +53,8 @@ namespace NKO.WindSpeed.SoundDelayHCSR04Sensor
                 {
                 }
                 _timeWatcher.Stop();
-                //Calculating distance
-                double distance = _timeWatcher.Elapsed.TotalSeconds * 17000;
-                return distance;
+                double delay = _timeWatcher.Elapsed.TotalSeconds;
+                return delay;
             });
             bool didComplete = t.Wait(TimeSpan.FromMilliseconds(100));
             if (didComplete)

@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKO.WindSpeed.UnitTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKO.WindSpeed.UltraSoundAnemometer", "NKO.WindSpeed.UltraSoundAnemometer\NKO.WindSpeed.UltraSoundAnemometer.csproj", "{235A8382-596D-49DE-B82C-D217FD0ACCEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKO.WindSpeed.SoundDelayHCSR04Sensor", "NKO.WindSpeed.SoundDelayHCSR04Sensor\NKO.WindSpeed.SoundDelayHCSR04Sensor.csproj", "{20724EAD-095D-4657-B25F-E1E551683E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKO.WindSpeed.SoundDelayHCSR04Sensor", "NKO.WindSpeed.SoundDelayHCSR04Sensor\NKO.WindSpeed.SoundDelayHCSR04Sensor.csproj", "{20724EAD-095D-4657-B25F-E1E551683E87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{7A045C8C-5A2E-4E32-8A55-1FC652E1A1B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKO.WindSpeed.TestApps.Distancemeter", "NKO.WindSpeed.TestApps.Distancemeter\NKO.WindSpeed.TestApps.Distancemeter.csproj", "{8C8A5CE4-1989-4C89-9FF7-A35F01301FF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +49,16 @@ Global
 		{20724EAD-095D-4657-B25F-E1E551683E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20724EAD-095D-4657-B25F-E1E551683E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20724EAD-095D-4657-B25F-E1E551683E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C8A5CE4-1989-4C89-9FF7-A35F01301FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8A5CE4-1989-4C89-9FF7-A35F01301FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8A5CE4-1989-4C89-9FF7-A35F01301FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8A5CE4-1989-4C89-9FF7-A35F01301FF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8C8A5CE4-1989-4C89-9FF7-A35F01301FF4} = {7A045C8C-5A2E-4E32-8A55-1FC652E1A1B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5481AA1A-4F61-4216-A155-4776B5E8792A}
