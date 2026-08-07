@@ -15,7 +15,7 @@ namespace NKO.WindSpeed.SoundDelayFakeSensor
         double _soundSpeed;
         public SoundDelayFakeSensor()
         {
-            _soundSpeed = 300;
+            _soundSpeed = double.NaN;
         }
 
         public void SetDistance(double distanceDelay)
@@ -78,6 +78,11 @@ namespace NKO.WindSpeed.SoundDelayFakeSensor
         public double GetSoundSpeed()
         {
             return _soundSpeed;
+        }
+
+        public void SetSoundSpeed(double soundSpeed)
+        {
+            _soundSpeed = soundSpeed;
         }
 
         private double _GetDiffByTime(double time, Vector wind)

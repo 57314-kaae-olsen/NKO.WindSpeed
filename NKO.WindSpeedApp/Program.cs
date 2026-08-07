@@ -9,11 +9,13 @@ bool FAKE = true;
 if (FAKE)
 {
     //-- Set fake wind
-    double speed = 10;
-    double orientationDegr = 30;
+    double speed = 2.5;
+    double orientationDegr = Math.Atan(4.0 / 3.0) * 180.0 / Math.PI;
     FakeWind.SetWind(speed, orientationDegr);
 
-    var anemometer = new UltraSoundAnemometerFake();
+    double soundSpeed = 4.0;
+    double soundDistance = 5.0;
+    var anemometer = new UltraSoundAnemometerFake(soundSpeed, soundDistance);
 
     //-- Let the anemometer work some seconds
     var task = Task.Run(() => Thread.Sleep(10000));

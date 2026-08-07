@@ -11,11 +11,14 @@ namespace NKO.WindSpeed.UnitTests
         [TestMethod]
         public void GetWindTest()
         {
-            double speed = 10;
-            double orientationDegr = 30;
+            double speed = 2.5;
+            double orientationDegr = Math.Atan(4.0 / 3.0) * 180.0 / Math.PI;
             FakeWind.SetWind(speed, orientationDegr);
 
-            UltraSoundAnemometerFake anemometer = new UltraSoundAnemometerFake();
+            double soundSpeed = 4.0;
+            double soundDistance = 5.0;
+
+            UltraSoundAnemometerFake anemometer = new UltraSoundAnemometerFake(soundSpeed, soundDistance);
 
             Wind wind = anemometer.GetInstantaneousWind();
 
