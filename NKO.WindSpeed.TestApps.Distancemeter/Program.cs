@@ -27,7 +27,7 @@ SoundDelayHCSR04Sensor soundDelay = new SoundDelayHCSR04Sensor();
 soundDelay.SetPins(triggerPin, echoPin);
 
 //lcd.SetCursorPosition(0, 1);
-//lcd.Write("By NKO  :-)"); 
+//lcd.Write("By NKO  :-)");    
 
 // R = specific gas constant = 287.058 J / (kg · K) for dry air
 double R = 287.058;
